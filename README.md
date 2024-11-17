@@ -1,14 +1,14 @@
 # SR-FLIPFLOP-USING-CASE
 
-## AIM:
+**AIM:**
 
-To implement  SR flipflop using verilog and validating their functionality using their functional tables
+To implement SR flipflop using verilog and validating their functionality using their functional tables
 
-## SOFTWARE REQUIRED:
+**SOFTWARE REQUIRED:**
 
 Quartus prime
 
-## THEORY
+**THEORY**
 
 SR Flip-Flop SR flip-flop operates with only positive clock transitions or negative clock transitions. Whereas, SR latch operates with enable signal. The circuit diagram of SR flip-flop is shown in the following figure.
 
@@ -32,7 +32,7 @@ By using three variable K-Map, we can get the simplified expression for next sta
  
 The maximum possible groupings of adjacent ones are already shown in the figure. Therefore, the simplified expression for next state Qt+1t+1 is Q(t+1)=S+R′Q(t)Q(t+1)=S+R′Q(t)
 
-## Procedure
+**Procedure**
 
 1.Type the program in Quartus software.
 
@@ -44,47 +44,46 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 5.For different input combinations generate the timing diagram.
 
-## PROGRAM
-```
-/*
-Program for flipflops and verify its truth table in quartus using Verilog programming.
-Developed by: GOWRISANKAR P
-RegisterNumber: 212222230041
-*/
 
-module Srflipflop(q, q_bar, s,r, clk, reset); 
+**PROGRAM**
+```
+/* Program for flipflops and verify its truth table in quartus using Verilog programming.
+Developed by:GOWRISANKAR P
+RegisterNumber:212222230041
+*/
+```
+```
+module EXP_6(q, q_bar, s,r, clk, reset);//SR Flip Flop Behavioral Level using ‘case’ 
   input s,r,clk, reset;
   output reg q;
   output q_bar;
  
-  always@(posedge clk) 
-  begin 
+  always@(posedge clk) begin // for synchronous reset
     if(!reset)       
-	    q <= 0;
+			q <= 0;
     else 
   begin
       case({s,r})       
-	     2'b00: q <= q;    
-		  2'b01: q <= 1'b0;	
-        2'b01: q <= 1'b0;	
-        2'b10: q <= 1'b1;	
-        2'b11: q <= 1'bx;			  					 
+	     2'b00: q <= q;    // No change
+        2'b01:q<=1'b0;   // Write logic for reset
+        2'b10:q<=1'b1;   // Write logic for set
+        2'b11:q<=1'bx;   // Write logic for Invalid state
       endcase
     end
   end
   assign q_bar = ~q;
 endmodule
 ```
-## L LOGIC FOR FLIPFLOPS
-
-![image](https://github.com/user-attachments/assets/6c19c50b-2d5b-4448-bca2-94df834c4fcc)
-
-
-## TIMING DIGRAMS FOR FLIP FLOPS
-
-![image-1](https://github.com/user-attachments/assets/ab9b42ec-fe26-4720-8323-ce087aa968d4)
+**RTL LOGIC FOR FLIPFLOPS**
+![image](https://github.com/roshiniRK/SR-FLIPFLOP-USING-CASE/assets/118956165/a04f21b0-31e5-4221-8900-92b0c8cdb8d1)
 
 
-## RESULTS
+
+**TIMING DIGRAMS FOR FLIP FLOPS**
+![image](https://github.com/roshiniRK/SR-FLIPFLOP-USING-CASE/assets/118956165/46123a49-8143-403e-904f-227571f3d32d)
+
+
+
+**RESULTS**
 
 The observation of the simulation results and confirm the successful execution of the program.
